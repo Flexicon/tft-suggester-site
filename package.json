@@ -1,0 +1,27 @@
+{
+  "name": "tft-suggester-app",
+  "private": true,
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/FriendlyUser/gridsome-starter-buefy.git"
+  },
+  "license": "BSD-3-Clause",
+  "author": "FriendlyUser <davidli012345@gmail.com>",
+  "scripts": {
+    "build": "npx gridsome build",
+    "develop": "gridsome develop",
+    "explore": "gridsome explore"
+  },
+  "dependencies": {
+    "axios": "^0.19.2",
+    "buefy": "^0.8.10",
+    "gridsome": "^0.7.13"
+  },
+  "devDependencies": {
+    "@gridsome/source-filesystem": "^0.6.2",
+    "@gridsome/transformer-remark": "^0.4.0",
+    "node-sass": "^4.13.1",
+    "sass-loader": "^8.0.2",
+    "style-resources-loader": "^1.3.3"
+  }
+}
