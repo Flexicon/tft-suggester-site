@@ -9,14 +9,24 @@
         />
 
         <champions-selected :champions="selected" @deselect="onChampDeselected($event)" />
+
+        <b-button
+          v-if="!selected.length"
+          class="toggle-all-btn"
+          @click="showTop = !showTop"
+          icon-left="eye"
+        >
+          Toggle all
+        </b-button>
+
+        <comps-list
+          v-if="selected.length || showTop"
+          :comps="comps"
+          :selected="selected"
+          @select-champion="onChampSelectedFromComp($event)"
+        />
       </div>
     </section>
-
-    <!-- <section class="section">
-      <div class="container">
-        <comps-list :comps="comps" />
-      </div>
-    </section> -->
   </Layout>
 </template>
 
@@ -37,6 +47,7 @@ export default {
   data() {
     return {
       selected: [],
+      showTop: false,
     }
   },
   created() {
@@ -45,6 +56,12 @@ export default {
   methods: {
     onChampSelected(champion) {
       this.selected.push(champion)
+      this.showTop = false
+      this.updateQueryParams()
+    },
+    onChampSelectedFromComp(champion) {
+      this.selected = [champion]
+      this.showTop = false
       this.updateQueryParams()
     },
     onChampDeselected(champion) {
@@ -71,6 +88,12 @@ export default {
   },
 }
 </script>
+
+<style lang="scss" scoped>
+.toggle-all-btn {
+  margin-bottom: 1rem;
+}
+</style>
 
 <page-query>
 query IndexData {
