@@ -50,7 +50,7 @@ export default {
       showTop: false,
     }
   },
-  created() {
+  mounted() {
     this.handleQueryParams()
   },
   methods: {
