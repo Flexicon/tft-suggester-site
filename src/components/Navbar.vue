@@ -1,5 +1,5 @@
 <template>
-  <b-navbar type="is-dark" shadow fixed-top>
+  <b-navbar type="is-dark" fixed-top>
     <template slot="brand">
       <b-navbar-item tag="router-link" :to="{ path: '/' }">
         {{ $static.metadata.siteName }}

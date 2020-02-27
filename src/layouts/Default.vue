@@ -1,22 +1,29 @@
 <template>
   <div>
     <Navbar />
-    <transition name="fade" appear>
-      <main>
-        <slot />
-      </main>
-    </transition>
+
+    <div class="content">
+      <transition name="fade" appear>
+        <main>
+          <slot />
+        </main>
+      </transition>
+
+      <the-footer />
+    </div>
   </div>
 </template>
 
 <script>
-import Navbar from "~/components/Navbar";
+import TheFooter from '~/components/TheFooter'
+import Navbar from '~/components/Navbar'
 
 export default {
   components: {
-    Navbar
-  }
-};
+    TheFooter,
+    Navbar,
+  },
+}
 </script>
 
 <style>
@@ -26,5 +33,17 @@ export default {
 
 .fade-enter {
   opacity: 0;
+}
+</style>
+
+<style lang="scss" scoped>
+.content {
+  display: flex;
+  min-height: calc(100vh - 3.25rem);
+  flex-direction: column;
+
+  main {
+    flex: 1 1 auto;
+  }
 }
 </style>
