@@ -1,40 +1,38 @@
-// Server API makes it possible to hook into various parts of Gridsome
-// on server-side and add custom data to the GraphQL data layer.
-// Learn more: https://gridsome.org/docs/server-api
-
-// Changes here require a server restart.
-// To restart press CTRL + C in terminal and run `gridsome develop`
+const util = require('util')
+const exec = util.promisify(require('child_process').exec)
 const axios = require('axios')
+const { DateTime } = require('luxon')
 
 module.exports = function(api) {
-  api.loadSource(async actions => {
+  api.loadSource(async store => {
     const { data } = await axios.get('https://tft-suggester.herokuapp.com/champions')
 
-    const collection = actions.addCollection({
+    const collection = store.addCollection({
       typeName: 'Champions',
     })
 
-    for (const item of data) {
-      collection.addNode({
-        name: item.name,
-        image: item.image,
-      })
+    for (const { name, image } of data) {
+      collection.addNode({ name, image })
     }
   })
 
-  api.loadSource(async actions => {
+  api.loadSource(async store => {
     const { data } = await axios.get('https://tft-suggester.herokuapp.com/comps')
 
-    const collection = actions.addCollection({
+    const collection = store.addCollection({
       typeName: 'Comps',
     })
 
-    for (const item of data) {
-      collection.addNode({
-        name: item.name,
-        tier: item.tier,
-        champions: item.champions,
-      })
+    for (const { name, tier, champions } of data) {
+      collection.addNode({ name, tier, champions })
     }
+  })
+
+  api.loadSource(async store => {
+    const { stdout: commitHash } = await exec('git rev-parse HEAD')
+    const buildTime = DateTime.local().toFormat('yyyy-LL-dd HH:mm:ss')
+
+    store.addMetadata('versionHash', commitHash.trim())
+    store.addMetadata('buildTime', buildTime)
   })
 }
