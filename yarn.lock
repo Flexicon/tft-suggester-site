@@ -768,6 +768,11 @@
     lodash "^4.17.13"
     to-fast-properties "^2.0.0"
 
+"@flexicon/gridsome-source-git-meta@^0.0.2":
+  version "0.0.2"
+  resolved "https://registry.yarnpkg.com/@flexicon/gridsome-source-git-meta/-/gridsome-source-git-meta-0.0.2.tgz#498168f718dddc96ef15fb04ae71230c56697f69"
+  integrity sha512-BV68xJ7Jrz3rrGOgJqt7//Oe+J25g0b5TH9vJ3QD7Ea1I9mQCA84/snqS5G9UukfO8m9InzHTtAEqLoajwjBHA==
+
 "@gridsome/cli@^0.3.1":
   version "0.3.1"
   resolved "https://registry.yarnpkg.com/@gridsome/cli/-/cli-0.3.1.tgz#8bdf97facddb3ab5338eb57521bc0bf5808561d2"

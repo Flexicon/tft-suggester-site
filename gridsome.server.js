@@ -1,5 +1,3 @@
-const util = require('util')
-const exec = util.promisify(require('child_process').exec)
 const axios = require('axios')
 const { DateTime } = require('luxon')
 
@@ -29,10 +27,8 @@ module.exports = function(api) {
   })
 
   api.loadSource(async store => {
-    const { stdout: commitHash } = await exec('git rev-parse HEAD')
     const buildTime = DateTime.local().toFormat('yyyy-LL-dd HH:mm:ss')
 
-    store.addMetadata('versionHash', commitHash.trim())
     store.addMetadata('buildTime', buildTime)
   })
 }

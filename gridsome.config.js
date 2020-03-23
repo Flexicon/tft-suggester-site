@@ -16,7 +16,7 @@ module.exports = {
   siteName: 'TFT Suggester',
   siteUrl: 'https://tft-suggester.nerfthis.xyz/',
   pathPrefix: '/',
-  plugins: [],
+  plugins: [{ use: '@flexicon/gridsome-source-git-meta' }],
   transformers: {
     remark: {
       // global remark options

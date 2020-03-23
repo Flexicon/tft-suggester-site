@@ -30,7 +30,7 @@ export default {
   },
   computed: {
     versionHash() {
-      return this.$static.metadata.versionHash
+      return this.$static.metadata.gitInfo.commitHash
     },
     buildTime() {
       return this.$static.metadata.buildTime
@@ -42,8 +42,10 @@ export default {
 <static-query>
 query {
   metadata {
-    versionHash
     buildTime
+    gitInfo {
+      commitHash
+    }
   }
 }
 </static-query>
