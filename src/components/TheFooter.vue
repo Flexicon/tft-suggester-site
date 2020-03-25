@@ -33,7 +33,7 @@ export default {
       return this.$static.metadata.gitInfo.commitHash
     },
     buildTime() {
-      return this.$static.metadata.buildTime
+      return this.$static.metadata.buildInfo.buildTime
     },
   },
 }
@@ -42,7 +42,9 @@ export default {
 <static-query>
 query {
   metadata {
-    buildTime
+    buildInfo {
+      buildTime
+    }
     gitInfo {
       commitHash
     }

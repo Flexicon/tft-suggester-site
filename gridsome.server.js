@@ -1,5 +1,4 @@
 const axios = require('axios')
-const { DateTime } = require('luxon')
 
 module.exports = function(api) {
   api.loadSource(async store => {
@@ -24,11 +23,5 @@ module.exports = function(api) {
     for (const { name, tier, champions } of data) {
       collection.addNode({ name, tier, champions })
     }
-  })
-
-  api.loadSource(async store => {
-    const buildTime = DateTime.local().toFormat('yyyy-LL-dd HH:mm:ss')
-
-    store.addMetadata('buildTime', buildTime)
   })
 }
