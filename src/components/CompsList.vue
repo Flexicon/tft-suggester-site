@@ -9,8 +9,8 @@
       <div class="comps-list-item__champions">
         <div
           class="comps-list-item__champions-portrait"
-          v-for="champ in comp.champions"
-          :key="champ.name"
+          v-for="(champ, i) in comp.champions"
+          :key="`${champ.name}-${i}`"
           @click="onChampionClick(champ)"
         >
           <img :src="champ.image" :alt="champ.name" :title="champ.name" />
