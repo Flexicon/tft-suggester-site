@@ -1,5 +1,5 @@
 <template>
-  <div class="champion-avatar" @click="$emit('click', champion)">
+  <div class="champion-avatar" :class="{ highlighted }" @click="$emit('click', champion)">
     <b-icon v-if="cancellable" class="close-icon" icon="close" size="is-small" />
     <img :src="champion.image" :alt="champion.name" :title="champion.name" />
   </div>
@@ -14,6 +14,7 @@ export default {
       validator: c => c.image && c.name,
     },
     cancellable: Boolean,
+    highlighted: Boolean,
   },
 }
 </script>
@@ -50,6 +51,11 @@ export default {
     border-radius: 100%;
     transition: transform 0.2s;
     z-index: 10;
+  }
+
+  &.highlighted {
+    background-color: $yellow;
+    padding: 1px;
   }
 }
 </style>

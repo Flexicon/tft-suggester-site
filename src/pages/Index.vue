@@ -23,7 +23,7 @@
           v-if="selected.length || showTop"
           :comps="comps"
           :selected="selected"
-          @select-champion="onChampSelectedFromComp($event)"
+          @select-champion="onChampSelected($event)"
         />
       </div>
     </section>
@@ -56,11 +56,6 @@ export default {
   methods: {
     onChampSelected(champion) {
       this.selected.push(champion)
-      this.showTop = false
-      this.updateQueryParams()
-    },
-    onChampSelectedFromComp(champion) {
-      this.selected = [champion]
       this.showTop = false
       this.updateQueryParams()
     },
