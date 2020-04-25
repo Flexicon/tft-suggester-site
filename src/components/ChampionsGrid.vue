@@ -1,18 +1,21 @@
 <template>
   <div class="champions-grid">
-    <div
-      class="champions-grid-item"
+    <champion-avatar
       v-for="champion in champions"
       :key="champion.id"
-      @click="onChampionClicked(champion)"
-    >
-      <img :src="champion.image" :alt="champion.name" :title="champion.name" />
-    </div>
+      :champion="champion"
+      @click="onChampionClicked"
+    />
   </div>
 </template>
 
 <script>
+import ChampionAvatar from './ChampionAvatar'
+
 export default {
+  components: {
+    ChampionAvatar,
+  },
   props: {
     champions: {
       type: Array,
@@ -44,22 +47,6 @@ export default {
 
   @media (min-width: $widescreen) {
     grid-template-columns: repeat(14, 1fr);
-  }
-}
-
-.champions-grid-item {
-  &:hover {
-    cursor: pointer;
-
-    img {
-      transform: scale(1.1);
-    }
-  }
-
-  img {
-    display: block;
-    width: 100%;
-    transition: transform 0.2s;
   }
 }
 </style>

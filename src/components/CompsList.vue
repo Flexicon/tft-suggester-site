@@ -7,21 +7,24 @@
       </div>
 
       <div class="comps-list-item__champions">
-        <div
-          class="comps-list-item__champions-portrait"
+        <champion-avatar
           v-for="(champ, i) in comp.champions"
           :key="`${champ.name}-${i}`"
-          @click="onChampionClick(champ)"
-        >
-          <img :src="champ.image" :alt="champ.name" :title="champ.name" />
-        </div>
+          :champion="champ"
+          @click="onChampionClick"
+        />
       </div>
     </div>
   </div>
 </template>
 
 <script>
+import ChampionAvatar from './ChampionAvatar'
+
 export default {
+  components: {
+    ChampionAvatar,
+  },
   props: {
     comps: {
       type: Array,
@@ -116,17 +119,6 @@ export default {
 
   @media screen and (min-width: $tablet) {
     grid-template-columns: repeat(8, 1fr);
-  }
-}
-
-.comps-list-item__champions-portrait {
-  &:hover {
-    cursor: pointer;
-  }
-
-  img {
-    display: block;
-    width: 100%;
   }
 }
 </style>

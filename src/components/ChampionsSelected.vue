@@ -1,19 +1,22 @@
 <template>
   <div class="champions-selected">
-    <div
-      class="champions-selected-item"
+    <champion-avatar
       v-for="champion in champions"
       :key="champion.id"
+      :champion="champion"
       @click="deselectChampion(champion)"
-    >
-      <b-icon class="close-icon" icon="close" size="is-small" />
-      <img :src="champion.image" :alt="champion.name" :title="champion.name" />
-    </div>
+      cancellable
+    />
   </div>
 </template>
 
 <script>
+import ChampionAvatar from './ChampionAvatar'
+
 export default {
+  components: {
+    ChampionAvatar,
+  },
   props: {
     champions: {
       type: Array,
@@ -42,33 +45,6 @@ export default {
 
   @media screen and (min-width: $desktop) {
     grid-template-columns: repeat(20, 1fr);
-  }
-
-  &-item {
-    position: relative;
-
-    &:hover {
-      cursor: pointer;
-
-      .close-icon {
-        transform: scale(1.2);
-      }
-    }
-
-    .close-icon {
-      color: $danger;
-      position: absolute;
-      top: -4px;
-      right: -4px;
-      background: $dark;
-      border-radius: 100%;
-      transition: transform 0.2s;
-    }
-
-    img {
-      display: block;
-      width: 100%;
-    }
   }
 }
 </style>
