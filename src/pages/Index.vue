@@ -24,6 +24,7 @@
           :comps="comps"
           :selected="selected"
           @select-champion="onChampSelected($event)"
+          @deselect-champion="onChampDeselected($event)"
         />
       </div>
     </section>

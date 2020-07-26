@@ -22,10 +22,9 @@ export default {
 <style lang="scss" scoped>
 .champion-avatar {
   position: relative;
+  cursor: pointer;
 
-  &:hover {
-    cursor: pointer;
-
+  &:not(.highlighted):hover {
     img {
       transform: scale(1.1);
     }

@@ -64,7 +64,7 @@ export default {
   },
   methods: {
     onChampionClick(champion) {
-      this.$emit('select-champion', champion)
+      this.$emit(this.isSelected(champion) ? 'deselect-champion' : 'select-champion', champion)
     },
     isSelected(champion) {
       return this.selectedNames.includes(champion.name)
