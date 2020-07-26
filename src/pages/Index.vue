@@ -12,11 +12,12 @@
 
         <b-button
           v-if="!selected.length"
+          title="Toggle all"
           class="toggle-all-btn"
+          :class="{ active: showTop }"
           @click="showTop = !showTop"
-          icon-left="eye"
         >
-          Toggle all
+          <b-icon class="icon" icon="eye" size="is-small" />
         </b-button>
 
         <comps-list
@@ -85,9 +86,20 @@ export default {
 }
 </script>
 
-<style lang="scss" scoped>
+<style lang="scss">
 .toggle-all-btn {
   margin-bottom: 1rem;
+
+  &.active .icon::after {
+    content: ' ';
+    display: block;
+    background: #363636;
+    width: 17px;
+    height: 2px;
+    position: absolute;
+    border-radius: 10px;
+    transform: rotate(-41deg);
+  }
 }
 </style>
 
