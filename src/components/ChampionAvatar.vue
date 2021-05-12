@@ -1,8 +1,10 @@
 <template>
-  <div class="champion-avatar" :class="{ highlighted }" @click="$emit('click', champion)">
-    <b-icon v-if="cancellable" class="close-icon" icon="close" size="is-small" />
-    <img :src="champion.image" :alt="champion.name" :title="champion.name" />
-  </div>
+  <b-tooltip :label="champion.name" type="is-light">
+    <div class="champion-avatar" :class="{ highlighted }" @click="$emit('click', champion)">
+      <b-icon v-if="cancellable" class="close-icon" icon="close" size="is-small" />
+      <img :src="champion.image" :alt="champion.name" :title="champion.name" />
+    </div>
+  </b-tooltip>
 </template>
 
 <script>
@@ -11,7 +13,7 @@ export default {
     champion: {
       type: Object,
       required: true,
-      validator: c => c.image && c.name,
+      validator: (c) => c.image && c.name,
     },
     cancellable: Boolean,
     highlighted: Boolean,
