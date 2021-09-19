@@ -11,6 +11,13 @@ export default function(Vue, { router, head, isClient }) {
     href: 'https://cdn.materialdesignicons.com/2.5.94/css/materialdesignicons.min.css',
   })
 
+  head.script.push({
+    src: '//gc.zgo.at/count.js',
+    'data-goatcounter': 'https://tft-suggester.goatcounter.com/count',
+    async: true,
+    body: true,
+  })
+
   Vue.use(Buefy)
   Vue.component('Layout', DefaultLayout)
 }
