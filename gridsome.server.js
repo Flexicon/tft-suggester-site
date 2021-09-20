@@ -8,8 +8,8 @@ module.exports = function(api) {
       typeName: 'Champions',
     })
 
-    for (const { name, image } of data) {
-      collection.addNode({ name, image })
+    for (const { name, image, cost } of data) {
+      collection.addNode({ name, image, cost })
     }
   })
 

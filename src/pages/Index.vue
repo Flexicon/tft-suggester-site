@@ -111,6 +111,7 @@ query IndexData {
         id
         name
         image
+        cost
       }
     }
   },
@@ -123,6 +124,7 @@ query IndexData {
         champions {
           name
           image
+          cost
         }
       }
     }
