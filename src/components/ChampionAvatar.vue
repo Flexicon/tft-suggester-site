@@ -29,7 +29,7 @@ export default {
 .champion-avatar {
   position: relative;
   cursor: pointer;
-  border-width: 2px;
+  border-width: 3px;
   border-style: solid;
   border-radius: 3px;
 
