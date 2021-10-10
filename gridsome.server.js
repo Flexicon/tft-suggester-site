@@ -20,8 +20,8 @@ module.exports = function(api) {
       typeName: 'Comps',
     })
 
-    for (const { name, tier, champions } of data) {
-      collection.addNode({ name, tier, champions })
+    for (const { name, tier, playstyle, champions } of data) {
+      collection.addNode({ name, tier, playstyle, champions })
     }
   })
 }
