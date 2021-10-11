@@ -37,6 +37,10 @@ export default {
   grid-gap: 4px;
   margin-top: 2rem;
 
+  @media (min-width: $large-mobile) {
+    grid-template-columns: repeat(8, 1fr);
+  }
+
   @media (min-width: $tablet) {
     grid-template-columns: repeat(10, 1fr);
   }
