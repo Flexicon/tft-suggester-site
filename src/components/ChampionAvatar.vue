@@ -2,10 +2,11 @@
   <b-tooltip :label="`${champion.name} - ${champion.cost}g`" type="is-light">
     <div
       class="champion-avatar"
-      :class="{ highlighted, [`c${champion.cost}`]: true }"
+      :class="{ selected, [`c${champion.cost}`]: true }"
       @click="$emit('click', champion)"
     >
       <b-icon v-if="cancellable" class="close-icon" icon="close" size="is-small" />
+      <b-icon v-if="selected" class="selected-icon" icon="check" size="is-small" />
       <img :src="champion.image" :alt="champion.name" :title="champion.name" />
     </div>
   </b-tooltip>
@@ -20,7 +21,7 @@ export default {
       validator: (c) => c.image && c.name,
     },
     cancellable: Boolean,
-    highlighted: Boolean,
+    selected: Boolean,
   },
 }
 </script>
@@ -33,7 +34,7 @@ export default {
   border-style: solid;
   border-radius: 3px;
 
-  &:not(.highlighted):hover {
+  &:not(.selected):hover {
     img {
       transform: scale(1.1);
     }
@@ -62,9 +63,14 @@ export default {
     z-index: 10;
   }
 
-  &.highlighted {
-    background-color: $yellow;
-    padding: 1px;
+  .selected-icon {
+    color: $green;
+    position: absolute;
+    top: -4px;
+    right: -4px;
+    background: $dark;
+    border-radius: 100%;
+    z-index: 10;
   }
 
   /* Cost styles */
