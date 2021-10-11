@@ -11,7 +11,7 @@
           v-for="(champ, i) in comp.champions"
           :key="`${champ.name}-${i}`"
           :champion="champ"
-          :highlighted="isSelected(champ)"
+          :selected="isSelected(champ)"
           @click="onChampionClick"
         />
       </div>
@@ -22,14 +22,24 @@
 <script>
 import ChampionAvatar from './ChampionAvatar'
 
-const buildCompFilterFn = selectedNames => comp => {
+const buildCompFilterFn = (selectedNames) => (comp) => {
   if (selectedNames.length === 0) return true
-  const compNames = comp.champions.map(c => c.name)
+  const compNames = comp.champions.map((c) => c.name)
 
-  return selectedNames.some(name => compNames.includes(name))
+  return selectedNames.some((name) => compNames.includes(name))
 }
 
-const compSortFn = (a, b) => {
+const countMatchesInComp = (comp, selectedNames) =>
+  comp.champions.filter((c) => selectedNames.includes(c.name)).length
+
+const buildCompSortFn = (selectedNames) => (a, b) => {
+  const aSelected = countMatchesInComp(a, selectedNames)
+  const bSelected = countMatchesInComp(b, selectedNames)
+
+  if (aSelected !== bSelected) {
+    return aSelected > bSelected ? -1 : 1
+  }
+
   if (a.tier === b.tier) {
     return 0
   } else if (a.tier === 'S') {
@@ -56,10 +66,12 @@ export default {
   },
   computed: {
     selectedNames() {
-      return this.selected.map(c => c.name)
+      return this.selected.map((c) => c.name)
     },
     filteredComps() {
-      return this.comps.filter(buildCompFilterFn(this.selectedNames)).sort(compSortFn)
+      return this.comps
+        .filter(buildCompFilterFn(this.selectedNames))
+        .sort(buildCompSortFn(this.selectedNames))
     },
   },
   methods: {
