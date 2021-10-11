@@ -121,6 +121,7 @@ query IndexData {
         id
         name
         tier
+        playstyle
         champions {
           name
           image

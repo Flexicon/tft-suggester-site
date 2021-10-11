@@ -3,7 +3,13 @@
     <div class="comps-list-item" v-for="comp in filteredComps" :key="comp.id">
       <div class="comps-list-item__name">
         <span class="tier" :class="`tier-${comp.tier.toLowerCase()}`">{{ comp.tier }}</span>
-        <span class="name">{{ comp.name }}</span>
+        <div class="name-wrapper">
+          <span class="name">{{ comp.name }}</span>
+          <br />
+          <b-tag class="playstyle" type="is-dark" v-if="comp.playstyle">
+            {{ comp.playstyle }}
+          </b-tag>
+        </div>
       </div>
 
       <div class="comps-list-item__champions">
@@ -88,19 +94,32 @@ export default {
 <style lang="scss" scoped>
 .comps-list-item {
   display: grid;
-  grid-template-columns: 50% auto;
+  grid-template-columns: 1fr;
   color: $white;
   background: $grey-dark;
   border-radius: 4px;
   padding: 10px 20px;
   margin-bottom: 1rem;
   box-shadow: 0 3px 5px 0 #888;
+
+  @media screen and (min-width: $tablet) {
+    grid-template-columns: 40% 60%;
+  }
+
+  @media screen and (min-width: $desktop) {
+    grid-template-columns: 50% auto;
+  }
 }
 
 .comps-list-item__name {
   display: flex;
   justify-content: flex-start;
   align-items: center;
+  margin-bottom: 0.8rem;
+
+  @media screen and (min-width: $tablet) {
+    margin-bottom: 0;
+  }
 
   .tier {
     display: flex;
@@ -135,10 +154,10 @@ export default {
 
 .comps-list-item__champions {
   display: grid;
-  grid-template-columns: repeat(2, 1fr);
+  grid-template-columns: repeat(4, 1fr);
   grid-gap: 10px;
 
-  @media screen and (min-width: $tablet) {
+  @media screen and (min-width: $large-mobile) {
     grid-template-columns: repeat(8, 1fr);
   }
 }

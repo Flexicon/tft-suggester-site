@@ -48,6 +48,7 @@ export default {
     display: block;
     width: 100%;
     max-width: 100px;
+    height: 100%;
     transition: transform 0.2s;
     border-radius: 1px;
   }
