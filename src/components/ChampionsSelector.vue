@@ -15,6 +15,10 @@
       :champions="filteredChampions"
       @select-champion="onSelect($event)"
     />
+
+    <p v-if="!filteredChampions.length">
+      No matching champions for <em>{{ query }}</em>
+    </p>
   </div>
 </template>
 
