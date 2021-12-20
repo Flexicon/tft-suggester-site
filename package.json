@@ -15,7 +15,7 @@
   "dependencies": {
     "axios": "^0.21.1",
     "buefy": "^0.8.10",
-    "gridsome": "^0.7.13"
+    "gridsome": "^0.7.23"
   },
   "devDependencies": {
     "@flexicon/gridsome-source-build-meta": "^0.0.1",
