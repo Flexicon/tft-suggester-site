@@ -24,4 +24,16 @@ module.exports = function(api) {
       collection.addNode({ name, tier, playstyle, champions })
     }
   })
+
+  api.loadSource(async store => {
+    const { data } = await axios.get('https://tft-suggester.herokuapp.com/items')
+
+    const collection = store.addCollection({
+      typeName: 'Items',
+    })
+
+    for (const { name, guid, id, color, loadoutsIcon } of data) {
+      collection.addNode({ name, guid, cdragonID: id, color, loadoutsIcon })
+    }
+  })
 }
