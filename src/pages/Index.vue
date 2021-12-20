@@ -53,9 +53,6 @@ export default {
       showTop: false,
     }
   },
-  mounted() {
-    this.handleQueryParams()
-  },
   methods: {
     onChampSelected(champion) {
       this.selected.push(champion)
@@ -68,7 +65,7 @@ export default {
     },
     updateQueryParams() {
       this.$router.push({
-        query: { selected: this.selected.map(c => c.name).join(',') || undefined },
+        query: { selected: this.selected.map((c) => c.name).join(',') || undefined },
       })
     },
     handleQueryParams() {
@@ -85,6 +82,14 @@ export default {
     },
     toggleCompsText() {
       return `${this.showTop ? 'Hide' : 'Show'} all Comps`
+    },
+  },
+  watch: {
+    '$route.query.selected': {
+      handler() {
+        this.handleQueryParams()
+      },
+      immediate: true,
     },
   },
 }
