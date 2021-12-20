@@ -12,12 +12,13 @@
 
         <b-button
           v-if="!selected.length"
-          title="Toggle all"
           class="toggle-all-btn"
+          :title="toggleCompsText"
           :class="{ active: showTop }"
           @click="showTop = !showTop"
         >
           <b-icon class="icon" icon="eye" size="is-small" />
+          <span>{{ toggleCompsText }}</span>
         </b-button>
 
         <comps-list
@@ -81,6 +82,9 @@ export default {
     },
     comps() {
       return this.$page.allComps.edges.map(({ node }) => node)
+    },
+    toggleCompsText() {
+      return `${this.showTop ? 'Hide' : 'Show'} all Comps`
     },
   },
 }
