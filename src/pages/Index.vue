@@ -53,6 +53,9 @@ export default {
       showTop: false,
     }
   },
+  mounted() {
+    this.handleQueryParams()
+  },
   methods: {
     onChampSelected(champion) {
       this.selected.push(champion)
@@ -85,11 +88,8 @@ export default {
     },
   },
   watch: {
-    '$route.query.selected': {
-      handler() {
-        this.handleQueryParams()
-      },
-      immediate: true,
+    '$route.query.selected'() {
+      this.handleQueryParams()
     },
   },
 }
