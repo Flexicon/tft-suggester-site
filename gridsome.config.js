@@ -1,5 +1,10 @@
 const path = require('path')
 
+const commitHash = require('child_process')
+  .execSync('git rev-parse HEAD')
+  .toString()
+  .trim()
+
 function addStyleResource(rule) {
   rule
     .use('style-resource')
@@ -19,6 +24,16 @@ module.exports = {
   plugins: [
     { use: '@flexicon/gridsome-source-git-meta' },
     { use: '@flexicon/gridsome-source-build-meta' },
+    {
+      use: 'gridsome-plugin-sentry',
+      options: {
+        dsn: 'https://acb470cc127444bd96d08094e30b5a22@o1098058.ingest.sentry.io/6120024',
+        release: 'tft-suggester@' + commitHash,
+        logErrors: process.env.NODE_ENV === 'development',
+        environment: process.env.NODE_ENV,
+        tracesSampleRate: 0.25,
+      },
+    },
   ],
   transformers: {
     remark: {

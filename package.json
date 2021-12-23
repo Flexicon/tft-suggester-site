@@ -1,12 +1,13 @@
 {
   "name": "tft-suggester-app",
+  "version": "0.1.0",
   "private": true,
   "repository": {
     "type": "git",
-    "url": "https://github.com/FriendlyUser/gridsome-starter-buefy.git"
+    "url": "https://github.com/Flexicon/tft-suggester-site.git"
   },
   "license": "BSD-3-Clause",
-  "author": "FriendlyUser <davidli012345@gmail.com>",
+  "author": "Mike Repec <mikerepec@gmail.com>",
   "scripts": {
     "build": "npx gridsome build",
     "develop": "gridsome develop",
@@ -15,7 +16,8 @@
   "dependencies": {
     "axios": "^0.21.2",
     "buefy": "^0.8.10",
-    "gridsome": "^0.7.23"
+    "gridsome": "^0.7.23",
+    "gridsome-plugin-sentry": "^1.1.0"
   },
   "devDependencies": {
     "@flexicon/gridsome-source-build-meta": "^0.0.1",
