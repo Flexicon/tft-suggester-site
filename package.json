@@ -24,7 +24,7 @@
     "@flexicon/gridsome-source-git-meta": "^0.0.2",
     "@gridsome/source-filesystem": "^0.6.2",
     "@gridsome/transformer-remark": "^0.4.0",
-    "node-sass": "^4.13.1",
+    "node-sass": "^7.0.0",
     "sass-loader": "^8.0.2",
     "style-resources-loader": "^1.3.3"
   }
