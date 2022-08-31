@@ -1,8 +1,10 @@
 const axios = require('axios')
 
+const BASE_API_URL = 'https://tft-suggester-api.nerfthis.xyz'
+
 module.exports = function(api) {
   api.loadSource(async store => {
-    const { data } = await axios.get('https://tft-suggester.herokuapp.com/champions')
+    const { data } = await axios.get(`${BASE_API_URL}/champions`)
 
     const collection = store.addCollection({
       typeName: 'Champions',
@@ -14,7 +16,7 @@ module.exports = function(api) {
   })
 
   api.loadSource(async store => {
-    const { data } = await axios.get('https://tft-suggester.herokuapp.com/comps')
+    const { data } = await axios.get(`${BASE_API_URL}/comps`)
 
     const collection = store.addCollection({
       typeName: 'Comps',
@@ -26,7 +28,7 @@ module.exports = function(api) {
   })
 
   api.loadSource(async store => {
-    const { data } = await axios.get('https://tft-suggester.herokuapp.com/items')
+    const { data } = await axios.get(`${BASE_API_URL}/items`)
 
     const collection = store.addCollection({
       typeName: 'Items',
