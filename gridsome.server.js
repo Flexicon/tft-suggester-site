@@ -3,6 +3,8 @@ const axios = require('axios')
 const BASE_API_URL = 'https://tft-suggester-api.nerfthis.xyz'
 
 module.exports = function(api) {
+  // Load Champions
+  // ==========================================================================
   api.loadSource(async store => {
     const { data } = await axios.get(`${BASE_API_URL}/champions`)
 
@@ -15,6 +17,8 @@ module.exports = function(api) {
     }
   })
 
+  // Load Comps
+  // ==========================================================================
   api.loadSource(async store => {
     const { data } = await axios.get(`${BASE_API_URL}/comps`)
 
@@ -22,11 +26,19 @@ module.exports = function(api) {
       typeName: 'Comps',
     })
 
-    for (const { name, tier, playstyle, champions } of data) {
+    for (let { name, tier, playstyle, champions, item_recommendations } of data) {
+      const itemsByChamp = item_recommendations.reduce(
+        (map, ir) => ({ ...map, [ir.champion]: ir.items }),
+        {},
+      )
+      champions = champions.map(c => ({ ...c, items: itemsByChamp[c.name] || [] }))
+
       collection.addNode({ name, tier, playstyle, champions })
     }
   })
 
+  // Load Items
+  // ==========================================================================
   api.loadSource(async store => {
     const { data } = await axios.get(`${BASE_API_URL}/items`)
 
@@ -34,8 +46,14 @@ module.exports = function(api) {
       typeName: 'Items',
     })
 
+    // TODO: remove this and the deduplication step once the api stops returning duplicates
+    const addedIDs = new Set()
+
     for (const { name, guid, id, color, loadoutsIcon } of data) {
+      if (addedIDs.has(id)) continue
+
       collection.addNode({ name, guid, cdragonID: id, color, loadoutsIcon })
+      addedIDs.add(id)
     }
   })
 }

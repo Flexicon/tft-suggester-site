@@ -135,6 +135,10 @@ query IndexData {
           name
           image
           cost
+          items {
+            name
+            image
+          }
         }
       }
     }
