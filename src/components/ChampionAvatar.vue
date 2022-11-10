@@ -137,5 +137,17 @@ export default {
   &.c5 {
     border-color: #b89d27;
   }
+
+  &.c6 {
+    border-color: #BBBBBB;
+  }
+
+  &.c7 {
+    border-color: #ffffff;
+  }
+
+  &.c8 {
+    border-color: #eab8ff;
+  }
 }
 </style>
