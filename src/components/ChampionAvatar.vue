@@ -1,9 +1,5 @@
 <template>
-  <b-tooltip
-    :label="`${champion.name} - ${champion.cost}g`"
-    :active="mainTooltipActive"
-    type="is-light"
-  >
+  <b-tooltip :label="`${champion.name} - ${champion.cost}g`" type="is-light">
     <div
       class="champion-avatar"
       :class="{ selected, [`c${champion.cost}`]: true }"
@@ -14,20 +10,12 @@
       <img class="avatar-image" :src="champion.image" :alt="champion.name" :title="champion.name" />
 
       <div class="item-images">
-        <b-tooltip
-          v-for="(item, i) in champion.items"
+        <img
+          v-for="(item, i) of champion.items"
           :key="`${item.name}-${i}`"
-          :label="`${item.name}`"
-          type="is-light"
-        >
-          <img
-            :src="item.image"
-            :alt="item.name"
-            @mouseover="mainTooltipActive = false"
-            @mouseout="mainTooltipActive = true"
-            @click.stop
-          />
-        </b-tooltip>
+          :src="item.image"
+          :alt="item.name"
+        />
       </div>
     </div>
   </b-tooltip>
@@ -43,11 +31,6 @@ export default {
     },
     cancellable: Boolean,
     selected: Boolean,
-  },
-  data() {
-    return {
-      mainTooltipActive: true,
-    }
   },
 }
 </script>
@@ -139,7 +122,7 @@ export default {
   }
 
   &.c6 {
-    border-color: #BBBBBB;
+    border-color: #bbbbbb;
   }
 
   &.c7 {
