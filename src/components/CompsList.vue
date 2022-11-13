@@ -28,17 +28,16 @@
 <script>
 import ChampionAvatar from './ChampionAvatar'
 
-const buildCompFilterFn = (selectedNames) => (comp) => {
-  if (selectedNames.length === 0) return true
-  const compNames = comp.champions.map((c) => c.name)
+const buildCompFilterFn = selectedNames => comp => {
+  const compNames = comp.champions.map(c => c.name)
 
-  return selectedNames.some((name) => compNames.includes(name))
+  return selectedNames.some(name => compNames.includes(name))
 }
 
 const countMatchesInComp = (comp, selectedNames) =>
-  comp.champions.filter((c) => selectedNames.includes(c.name)).length
+  comp.champions.filter(c => selectedNames.includes(c.name)).length
 
-const buildCompSortFn = (selectedNames) => (a, b) => {
+const buildCompSortFn = selectedNames => (a, b) => {
   const aSelected = countMatchesInComp(a, selectedNames)
   const bSelected = countMatchesInComp(b, selectedNames)
 
@@ -61,6 +60,10 @@ export default {
     ChampionAvatar,
   },
   props: {
+    topLimit: {
+      type: Number,
+      required: true,
+    },
     comps: {
       type: Array,
       required: true,
@@ -72,12 +75,15 @@ export default {
   },
   computed: {
     selectedNames() {
-      return this.selected.map((c) => c.name)
+      return this.selected.map(c => c.name)
+    },
+    sortedComps() {
+      return this.comps.sort(buildCompSortFn(this.selectedNames))
     },
     filteredComps() {
-      return this.comps
-        .filter(buildCompFilterFn(this.selectedNames))
-        .sort(buildCompSortFn(this.selectedNames))
+      return this.selected.length
+        ? this.sortedComps.filter(buildCompFilterFn(this.selectedNames))
+        : this.sortedComps.slice(0, this.topLimit)
     },
   },
   methods: {

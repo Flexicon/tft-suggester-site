@@ -25,6 +25,7 @@
           v-if="selected.length || showTop"
           :comps="comps"
           :selected="selected"
+          :top-limit="topLimit"
           @select-champion="onChampSelected($event)"
           @deselect-champion="onChampDeselected($event)"
         />
@@ -49,6 +50,7 @@ export default {
   },
   data() {
     return {
+      topLimit: 5,
       selected: [],
       showTop: false,
     }
@@ -68,7 +70,7 @@ export default {
     },
     updateQueryParams() {
       this.$router.push({
-        query: { selected: this.selected.map((c) => c.name).join(',') || undefined },
+        query: { selected: this.selected.map(c => c.name).join(',') || undefined },
       })
     },
     handleQueryParams() {
@@ -84,7 +86,7 @@ export default {
       return this.$page.allComps.edges.map(({ node }) => node)
     },
     toggleCompsText() {
-      return `${this.showTop ? 'Hide' : 'Show'} all Comps`
+      return `${this.showTop ? 'Hide' : 'Show'} top ${this.topLimit}`
     },
   },
   watch: {
