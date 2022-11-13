@@ -64,14 +64,15 @@ export default {
 
   .item-images {
     position: absolute;
-    bottom: 0px;
-    left: 0px;
-    width: 100%;
-    display: flex;
-    justify-content: space-around;
+    bottom: -8px;
+    left: -6px;
+    width: calc(100% + 12px);
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    gap: 1px;
 
     img {
-      width: 18px;
+      width: 100%;
       border-width: 1px;
       border-style: solid;
       border-radius: 2px;
