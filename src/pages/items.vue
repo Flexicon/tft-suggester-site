@@ -2,18 +2,28 @@
   <Layout>
     <section class="section">
       <div class="container">
-        <h1>Items 🤫</h1>
-
-        <p><em>Coming soon...</em></p>
+        <ItemsCheatsheet :items="items" />
       </div>
     </section>
   </Layout>
 </template>
 
 <script>
+import ItemsCheatsheet from '~/components/ItemsCheatsheet.vue';
+
 export default {
   meta: {
     title: 'Items',
+  },
+  components: {
+    ItemsCheatsheet,
+  },
+  computed: {
+    items() {
+      return this.$page.allItems.edges
+        .map(e => e.node)
+        .sort((a, b) => a.name > b.name ? 1 : -1)
+    },
   },
 }
 </script>
