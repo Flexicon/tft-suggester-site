@@ -46,14 +46,8 @@ module.exports = function(api) {
       typeName: 'Items',
     })
 
-    // TODO: remove this and the deduplication step once the api stops returning duplicates
-    const addedIDs = new Set()
-
-    for (const { name, guid, id, color, loadoutsIcon } of data) {
-      if (addedIDs.has(id)) continue
-
-      collection.addNode({ name, guid, cdragonID: id, color, loadoutsIcon })
-      addedIDs.add(id)
+    for (const { name, image, components } of data) {
+      collection.addNode({ name, image, components })
     }
   })
 }
