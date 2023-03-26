@@ -35,7 +35,6 @@ export default {
         {
           name: 'Items',
           to: { path: '/items' },
-          hidden: true,
         },
       ],
     }
