@@ -23,16 +23,12 @@ query ItemsData {
   allItems {
     edges {
       node {
-        guid
-        cdragonID
-        id
-        color {
-          R
-          G
-          B
-          A
+        name
+        image
+        components {
+          name
+          image
         }
-        loadoutsIcon
       }
     }
   }
