@@ -11,8 +11,6 @@
 
       <div class="champ-item-cheatsheet">
         <div v-for="item in uniqueItemsForChampion(champ)" :key="item.name" class="composite-item">
-          <img :src="item.image" :alt="item.name" />
-          <div class="arrow">-></div>
           <div class="components">
             <img
               v-for="(component, i) in itemsFromCheatsheet[item.name.toLowerCase()].components"
@@ -21,6 +19,10 @@
               :alt="component.name"
             />
           </div>
+          <div class="arrow">
+            <b-icon icon="arrow-right-thick" />
+          </div>
+          <img :src="item.image" :alt="item.name" />
         </div>
       </div>
     </div>
