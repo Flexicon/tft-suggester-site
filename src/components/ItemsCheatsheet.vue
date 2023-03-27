@@ -4,9 +4,15 @@
 
     <div class="sheet">
       <div v-for="item in normalItems" :key="item.name">
-        <img class="final" :src="item.image" :alt="item.name">
+        <img class="final" :src="item.image" :alt="item.name" />
         <div class="components">
-          <img v-for="c in item.components" :key="c.name" class="component" :src="c.image" :alt="c.name">
+          <img
+            v-for="c in item.components"
+            :key="c.name"
+            class="component"
+            :src="c.image"
+            :alt="c.name"
+          />
         </div>
       </div>
     </div>
@@ -15,10 +21,15 @@
 
     <div class="sheet">
       <div v-for="item in spatItems" :key="item.name">
-        <img class="final" :src="item.image" :alt="item.name">
+        <img class="final" :src="item.image" :alt="item.name" />
         <div class="components">
-          <img v-for="(c, i) in item.components" :key="`${item.name}-${c.name}-${i}`" class="component" :src="c.image"
-            :alt="c.name">
+          <img
+            v-for="(c, i) in item.components"
+            :key="`${item.name}-${c.name}-${i}`"
+            class="component"
+            :src="c.image"
+            :alt="c.name"
+          />
         </div>
       </div>
     </div>
@@ -35,10 +46,10 @@ export default {
   },
   computed: {
     normalItems() {
-      return this.items.filter(item => item.components.every(c => c.name !== 'Spatula'));
+      return this.items.filter(item => item.components.every(c => c.name !== 'Spatula'))
     },
     spatItems() {
-      return this.items.filter(item => item.components.some(c => c.name === 'Spatula'));
+      return this.items.filter(item => item.components.some(c => c.name === 'Spatula'))
     },
   },
 }
@@ -60,7 +71,6 @@ export default {
     grid-template-columns: repeat(6, 1fr);
   }
 
-
   img {
     width: 100%;
     display: block;
@@ -75,7 +85,7 @@ export default {
     grid-template-columns: 1fr 1fr;
     gap: 0.3rem;
 
-    margin: -1.2rem -.3rem 0;
+    margin: -1.2rem -0.3rem 0;
   }
 }
 </style>

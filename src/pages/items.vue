@@ -9,7 +9,7 @@
 </template>
 
 <script>
-import ItemsCheatsheet from '~/components/ItemsCheatsheet.vue';
+import ItemsCheatsheet from '~/components/ItemsCheatsheet.vue'
 
 export default {
   meta: {
@@ -20,9 +20,7 @@ export default {
   },
   computed: {
     items() {
-      return this.$page.allItems.edges
-        .map(e => e.node)
-        .sort((a, b) => a.name > b.name ? 1 : -1)
+      return this.$page.allItems.edges.map(e => e.node).sort((a, b) => (a.name > b.name ? 1 : -1))
     },
   },
 }
