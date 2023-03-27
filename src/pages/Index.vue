@@ -24,6 +24,7 @@
         <comps-list
           v-if="selected.length || showTop"
           :comps="comps"
+          :cheatsheet="itemCheatsheet"
           :selected="selected"
           :top-limit="topLimit"
           @select-champion="onChampSelected($event)"
@@ -85,6 +86,9 @@ export default {
     comps() {
       return this.$page.allComps.edges.map(({ node }) => node)
     },
+    itemCheatsheet() {
+      return this.$page.allItems.edges.map(({ node }) => node)
+    },
     toggleCompsText() {
       return `${this.showTop ? 'Hide' : 'Show'} top ${this.topLimit}`
     },
@@ -141,6 +145,18 @@ query IndexData {
             name
             image
           }
+        }
+      }
+    }
+  }
+  allItems {
+    edges {
+      node {
+        name
+        image
+        components {
+          name
+          image
         }
       }
     }

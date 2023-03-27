@@ -9,7 +9,7 @@
       <b-icon v-if="selected" class="selected-icon" icon="check" size="is-small" />
       <img class="avatar-image" :src="champion.image" :alt="champion.name" :title="champion.name" />
 
-      <div class="item-images">
+      <div v-if="!noItems" class="item-images">
         <img
           v-for="(item, i) of champion.items"
           :key="`${item.name}-${i}`"
@@ -31,6 +31,7 @@ export default {
     },
     cancellable: Boolean,
     selected: Boolean,
+    noItems: Boolean,
   },
 }
 </script>

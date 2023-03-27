@@ -3,9 +3,14 @@
     <div class="comps-list-item" v-for="comp in filteredComps" :key="comp.id">
       <div class="comps-list-item__name">
         <span class="tier" :class="`tier-${comp.tier.toLowerCase()}`">{{ comp.tier }}</span>
-        <div class="name-wrapper">
-          <span class="name">{{ comp.name }}</span>
-          <br />
+        <div class="name-wrapper togglable" @click="onToggleOpen(comp)">
+          <span class="name">
+            <span>
+              {{ comp.name }}
+            </span>
+            <b-icon v-if="!isOpen(comp)" class="open-toggle-icon" icon="chevron-down" />
+            <b-icon v-else class="open-toggle-icon" icon="chevron-up" />
+          </span>
           <b-tag class="playstyle" type="is-dark" v-if="comp.playstyle">
             {{ comp.playstyle }}
           </b-tag>
@@ -21,12 +26,17 @@
           @click="onChampionClick"
         />
       </div>
+
+      <div v-if="isOpen(comp)">
+        <comp-item-cheatsheet :comp="comp" :cheatsheet="cheatsheet" />
+      </div>
     </div>
   </div>
 </template>
 
 <script>
 import ChampionAvatar from './ChampionAvatar'
+import CompItemCheatsheet from './CompItemCheatsheet'
 
 const buildCompFilterFn = selectedNames => comp => {
   const compNames = comp.champions.map(c => c.name)
@@ -58,6 +68,7 @@ const buildCompSortFn = selectedNames => (a, b) => {
 export default {
   components: {
     ChampionAvatar,
+    CompItemCheatsheet,
   },
   props: {
     topLimit: {
@@ -72,6 +83,15 @@ export default {
       type: Array,
       default: () => [],
     },
+    cheatsheet: {
+      type: Array,
+      default: () => [],
+    },
+  },
+  data() {
+    return {
+      openCompMap: {},
+    }
   },
   computed: {
     selectedNames() {
@@ -92,6 +112,15 @@ export default {
     },
     isSelected(champion) {
       return this.selectedNames.includes(champion.name)
+    },
+    championsWithItems(comp) {
+      return comp.champions.filter(c => c.items.length > 0)
+    },
+    onToggleOpen(comp) {
+      this.openCompMap = { ...this.openCompMap, [comp.name]: !this.openCompMap[comp.name] }
+    },
+    isOpen(comp) {
+      return !!this.openCompMap[comp.name]
     },
   },
 }
@@ -125,6 +154,20 @@ export default {
 
   @media screen and (min-width: $tablet) {
     margin-bottom: 0;
+  }
+
+  .name-wrapper {
+    .name {
+      display: flex;
+    }
+
+    &.togglable {
+      cursor: pointer;
+
+      &:hover {
+        color: #ccc;
+      }
+    }
   }
 
   .tier {
