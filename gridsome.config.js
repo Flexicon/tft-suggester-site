@@ -27,7 +27,7 @@ module.exports = {
     {
       use: 'gridsome-plugin-sentry',
       options: {
-        dsn: 'https://acb470cc127444bd96d08094e30b5a22@o1098058.ingest.sentry.io/6120024',
+        dsn: 'https://d9ac2f93bb4f42c185d0c650f0522db5@o1098058.ingest.sentry.io/4505387223941120',
         release: 'tft-suggester@' + commitHash,
         logErrors: process.env.NODE_ENV === 'development',
         environment: process.env.NODE_ENV,
