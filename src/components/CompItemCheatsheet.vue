@@ -13,11 +13,14 @@
         <div v-for="item in uniqueItemsForChampion(champ)" :key="item.name" class="composite-item">
           <div class="components">
             <img
-              v-for="(component, i) in itemsFromCheatsheet[item.name.toLowerCase()].components"
+              v-for="(component, i) in componentsFor(item)"
               :key="`${champ.name}-${component.name}-${i}`"
               :src="component.image"
               :alt="component.name"
             />
+            <span class="is-size-3" v-if="!componentsFor(item).length">
+              🤷‍♂️
+            </span>
           </div>
           <div class="arrow">
             <b-icon icon="arrow-right-thick" />
@@ -74,6 +77,9 @@ export default {
         }
         return items
       }, [])
+    },
+    componentsFor(item) {
+      return this.itemsFromCheatsheet[item.name.toLowerCase()]?.components ?? []
     },
   },
 }
