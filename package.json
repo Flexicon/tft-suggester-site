@@ -9,7 +9,7 @@
   "license": "BSD-3-Clause",
   "author": "Mike Repec <mikerepec@gmail.com>",
   "scripts": {
-    "build": "npx gridsome build",
+    "build": "NODE_OPTIONS=\"--openssl-legacy-provider\" npx gridsome build",
     "develop": "NODE_OPTIONS=\"--openssl-legacy-provider\" gridsome develop",
     "explore": "gridsome explore"
   },
