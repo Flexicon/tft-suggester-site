@@ -1,3 +1,7 @@
+# DEPRECATED
+
+App moved to [V2 repository](https://github.com/Flexicon/tft-suggester-site-v2).
+
 ## TFT Suggester App
 
 ### Useful links
